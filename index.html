@@ -1,7 +1,40 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="scripts/lastfm.api.md5.js"></script>
+    <script type="text/javascript" src="scripts/lastfm.api.js"></script>
+    <script type="text/javascript" src="scripts/lastfm.api.cache.js"></script>
+
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <h1>Hello World</h1>
+    <p>I'm hosted with GitHub Pages.</p>
+    <script>
+        /* Create a cache object */
+        var cache = new LastFMCache();
+
+        /* Create a LastFM object */
+        var lastfm = new LastFM({
+            apiKey: 'cb13041c34163995342a5b58599fb4ef',
+            apiSecret: '05ae23cbe1630e5201b1b8a9815bf732',
+            cache: cache
+        });
+
+        /* Load some artist info. */
+        lastfm.artist.getInfo({
+            artist: 'Insomnium'
+        }, {
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (code, message) {
+                /* Show error message. */
+            }
+        });
+    </script>
 </body>
+
 </html>
