@@ -10,8 +10,9 @@
 </head>
 
 <body>
-    <h1>Does it change without push?</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <div id="artist-content">
+        
+    </div>
     <script>
         /* Create a cache object */
         var cache = new LastFMCache();
@@ -29,11 +30,16 @@
         }, {
             success: function (data) {
                 console.log(data);
+                var node = document.getElementById('artist-content');
+                node.innerHTML += `Artist: <a href="${data.artist.url}">${data.artist.name}</a>`;
+                node.innerHTML += `<img src="${data.artist.image[0]["#text"]}"></img>`;
+
             },
             error: function (code, message) {
                 console.log(code + message);
             }
         });
+        
     </script>
 </body>
 
